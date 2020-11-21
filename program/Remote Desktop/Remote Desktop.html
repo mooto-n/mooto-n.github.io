@@ -1,0 +1,36 @@
+@echo off
+:LOOP
+
+Set INPUT_HOSTNAME="ホスト名: "
+Set INPUT_USERNAME="ユーザー名: "
+Set INPUT_PASSWORD="パスワード: "
+
+rem ローカル利用時に個別設定
+Set DF_HOSTNAME="<HOSTNAME>"
+Set DF_USERNAME="<USERNAME>"
+Set DF_PASSWORD="<PASSWORD>"
+
+rem 0:１回のみ・1: ループする
+Set LOOP_FLAG=0
+
+rem 未定義チェック
+if not defined DF_HOSTNAME ( Set /P DF_HOSTNAME=%INPUT_HOSTNAME%
+) else ( echo %INPUT_HOSTNAME%%DF_HOSTNAME% )
+if not defined DF_USERNAME ( Set /P DF_USERNAME=%INPUT_USERNAME%
+) else ( echo %INPUT_USERNAME%%DF_USERNAME% )
+if not defined DF_PASSWORD ( Set /P DF_PASSWORD=%INPUT_PASSWORD%
+) else ( echo %INPUT_PASSWORD%%DF_PASSWORD% )
+
+rem 実行
+Cmdkey /generic:TERMSRV/%DF_HOSTNAME% /user:%DF_USERNAME% /pass:%DF_PASSWORD%
+Start mstsc /v:%DF_HOSTNAME%
+Timeout 3
+Cmdkey /delete:TERMSRV/%DF_HOSTNAME%
+
+if ( %LOOP_FLAG% == 1 ) {
+	Set /P LOOP_ENTER="ENTERキーでループ"
+	cls
+	goto LOOP
+}
+
+exit
