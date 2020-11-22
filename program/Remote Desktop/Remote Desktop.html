@@ -8,19 +8,19 @@
 @echo off<br>
 :LOOP<br>
 <br>
-Set INPUT_HOSTNAME="ƒzƒXƒg–¼: "<br>
-Set INPUT_USERNAME="ƒ†[ƒU[–¼: "<br>
-Set INPUT_PASSWORD="ƒpƒXƒ[ƒh: "<br>
+Set INPUT_HOSTNAME="ãƒ›ã‚¹ãƒˆå: "<br>
+Set INPUT_USERNAME="ãƒ¦ãƒ¼ã‚¶ãƒ¼å: "<br>
+Set INPUT_PASSWORD="ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰: "<br>
 <br>
-rem ƒ[ƒJƒ‹—˜—pŽž‚ÉŒÂ•ÊÝ’è<br>
+rem ãƒ­ãƒ¼ã‚«ãƒ«åˆ©ç”¨æ™‚ã«å€‹åˆ¥è¨­å®š<br>
 Set DF_HOSTNAME="<HOSTNAME>"<br>
 Set DF_USERNAME="<USERNAME>"<br>
 Set DF_PASSWORD="<PASSWORD>"<br>
 <br>
-rem 0:‚P‰ñ‚Ì‚ÝE1: ƒ‹[ƒv‚·‚é<br>
+rem 0:ï¼‘å›žã®ã¿ãƒ»1: ãƒ«ãƒ¼ãƒ—ã™ã‚‹<br>
 Set LOOP_FLAG=0<br>
 <br>
-rem –¢’è‹`ƒ`ƒFƒbƒN<br>
+rem æœªå®šç¾©ãƒã‚§ãƒƒã‚¯<br>
 if not defined DF_HOSTNAME ( Set /P DF_HOSTNAME=%INPUT_HOSTNAME%<br>
 ) else ( echo %INPUT_HOSTNAME%%DF_HOSTNAME% )<br>
 if not defined DF_USERNAME ( Set /P DF_USERNAME=%INPUT_USERNAME%<br>
@@ -28,14 +28,14 @@ if not defined DF_USERNAME ( Set /P DF_USERNAME=%INPUT_USERNAME%<br>
 if not defined DF_PASSWORD ( Set /P DF_PASSWORD=%INPUT_PASSWORD%<br>
 ) else ( echo %INPUT_PASSWORD%%DF_PASSWORD% )<br>
 <br>
-rem ŽÀs<br>
+rem å®Ÿè¡Œ<br>
 Cmdkey /generic:TERMSRV/%DF_HOSTNAME% /user:%DF_USERNAME% /pass:%DF_PASSWORD%<br>
 Start mstsc /v:%DF_HOSTNAME%<br>
 Timeout 3<br>
 Cmdkey /delete:TERMSRV/%DF_HOSTNAME%<br>
 <br>
 if ( %LOOP_FLAG% == 1 ) {<br>
-	Set /P LOOP_ENTER="ENTERƒL[‚Åƒ‹[ƒv"<br>
+	Set /P LOOP_ENTER="ENTERã‚­ãƒ¼ã§ãƒ«ãƒ¼ãƒ—"<br>
 	cls<br>
 	goto LOOP<br>
 }<br>
